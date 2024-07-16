@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>fetch API</h1>
+    <div id="post">
+    <h2 id="title"></h2>
+    <p id="body"></p>
+    <input type="text" name id="title" placeholder="title">
+    <input type="submit" value="Soumettre"id="mybutton">
+    </input>
+    
+</div>
+    <script>
+        const search = document.location.search
+        const params = new URLSearchParams(search)
+        const id= params.get(`id`)
+         fetch('https://jsonplaceholder.typicode.com/posts/1', {
+            method: 'PUT',
+  body: JSON.stringify({
+    title: $("#title").val(),
+    body: $("#body").val(),
+    userId: 1,
+  }),
+  headers: {
+    'Content-type': 'application/json; charset=UTF-8',
+  },
+})
+.then((response) => response.json())
+.then((json) => console.log(json));
+           console.log(json)
+           const post = json
+           $("#title").text(json.title)
+            $("#body").text()
+            
+       
+    </script>
+</body>
+</html>
